@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text = "DCR"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+.headnav{
+  width:100%;
+  height:40px;
+  background: #eee;
+  overflow-y: hidden;
+  padding: 10 px;
+}
+
+.headnav a{
+
+  text-decoration:none;
+  color:#000000;
+  display: block;
+}
+
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #000000;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #064579;
+}
+
+.main {
+  margin-left: 210px; /* Same width as the sidebar + left position in px */
+  font-size: 22px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+table {
+    width: 100%; /* Ширина таблицы */
+    border: 1px solid black; /* Рамка вокруг таблицы */
+    border-collapse: collapse; /* Отображать только одинарные линии */
+   }
+th {
+    text-align: left; /* Выравнивание по левому краю */
+    background: #ccc; /* Цвет фона ячеек */
+    padding: 5px; /* Поля вокруг содержимого ячеек */
+    border: 1px solid black; /* Граница вокруг ячеек */
+   }
+td {
+    padding: 5px; /* Поля вокруг содержимого ячеек */
+    border: 1px solid black; /* Граница вокруг ячеек */
+   }
+</style>
+
+</head>
+<body>
+
+<div class="sidenav">
+    <a class="headnav">
+        <button onClick="window.location.reload();">Обновить</button>
+    </a>
+    <ul>
+        <li>
+            <a href="/">
+                Все задачи
+            </a>
+        </li>
+        <li>
+            <a href="/worker">
+                Ваши задачи
+            </a>
+        </li>
+    </ul>
+
+</div>
+<table>
+<tbody>
+
+<tr>
+    <th>Задача</th> <th>Статус</th><th>Исполнитель</th>
+    <th>Отдел</th><th>Приоритетность</th><th>Дата<br>окончания</th>
+</tr>
+<div th:each = "el.${posts}">
+    <tr>
+        <th th:text = "${subject}" th:href="'/block' + ${el.id}"/>
+        <th th:text = "${status}"/>
+        <th th:text = "${implementor}"/>
+        <th th:text = "${department}"/>
+        <th th:text = "${importance}"/>
+        <th th:text = "${due_date}"/>
+    </tr>
+</div>
+</tbody>
+</table>
+</body>
+</html>
